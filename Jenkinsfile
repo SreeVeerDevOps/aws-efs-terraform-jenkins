@@ -1,7 +1,7 @@
 pipeline {
     agent any
       environment {
-      DESTROY = "NO"
+      DESTROY = "YES"
     }
     stages {
         stage('GetVPC') {
@@ -30,7 +30,7 @@ pipeline {
         stage('Terraform Validate & Plan') {
             when {
                 expression {
-                "${env.DESTROY}" == "YES"
+                "${env.DESTROY}" == "NO"
                 }
             }
             steps {
@@ -40,7 +40,7 @@ pipeline {
         stage('Terraform Apply & Status') {
             when {
                 expression {
-                "${env.DESTROY}" == "YES"
+                "${env.DESTROY}" == "NO"
                 }
             }
             steps {
