@@ -1,7 +1,7 @@
 pipeline {
     agent any
       environment {
-      DESTROY = "YES"
+      DESTROY = "NO"
     }
     stages {
         stage('GetVPC') {
