@@ -23,11 +23,19 @@ pipeline {
             }
         }
         stage('Terraform Init') {
+            when {
+                expression {
+                "${env.DESTROY}" == "NO"
+                }
             steps {
                 sh 'terraform init'
             }
         }
         stage('Terraform Validate & Plan') {
+            when {
+                expression {
+                "${env.DESTROY}" == "NO"
+                }
             steps {
                 sh 'terraform fmt && terraform validate && terraform plan'
             }
